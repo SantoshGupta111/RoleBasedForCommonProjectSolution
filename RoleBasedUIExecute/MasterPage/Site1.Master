@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.Master.cs" Inherits="UIExecute.MasterPage.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css"  rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style type="text/css">
+
+        .style1
+        {
+            width:100%;
+        }
+        
+    </style>
+
+</head>
+<body>
+    <form runat="server">
+    <asp:ScriptManager ID="ScriptManager1"  runat="server"></asp:ScriptManager>
+    
+    <div class="page" style="margin-top:35px;">
+    <div style="height:50px; padding:10px; margin-left:20px;">
+    <font class="title;">
+    <img src="../Images/wwwimg.png" style="height:100%; width=100%" />
+     <%--Midas<br /> PC Touch--%>
+     </font>
+     </div>
+        <div class="header2">
+            <div class="title">
+               <h1><strong>
+                  <h5> Welcome:  Role Based Application..with accessbility for read/write/delete & View...</h5>
+                   </strong>
+                </h1><br />
+            </div>
+          
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/UserLogin.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+              <%--  <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                    </Items>
+                </asp:Menu>--%>
+            </div>
+        </div>
+        <div class="main">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        
+        </div>
+       
+        <div class="clear2" style="margin-top:-50px;">
+        
+            <table width="100%">
+                <tr>
+                    <td bgcolor="#00C0F2" align="center" style="color:White;">
+                    Copyright    2015 * Demo Project solution. 
+                    </td>
+                </tr>
+            </table>
+        
+        </div>
+        
+    </div>
+    
+    <div class="footer">
+    
+    </div>
+    </form>
+</body>
+</html>

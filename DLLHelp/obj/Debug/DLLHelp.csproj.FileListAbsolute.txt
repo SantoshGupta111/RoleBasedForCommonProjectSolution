@@ -1,0 +1,6 @@
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\DLLHelp\bin\Debug\DLLHelp.dll
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\DLLHelp\bin\Debug\DLLHelp.pdb
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\DLLHelp\obj\Debug\DLLHelp.csproj.CoreCompileInputs.cache
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\DLLHelp\obj\Debug\DLLHelp.dll
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\DLLHelp\obj\Debug\DLLHelp.pdb
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\DLLHelp\obj\Debug\DLLHelp.csprojAssemblyReference.cache

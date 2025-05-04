@@ -1,0 +1,422 @@
+﻿<style >
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #009BA8;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    height:80px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.logo {
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+   
+}
+
+.nav-links {
+    float: right;
+    margin-top: 5px;
+
+}
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+    }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+.login {
+    clear: both; /* Clear the float */
+    margin-top: 0px;
+    float:right;
+    margin-right:20px;
+ 
+}
+
+/* Tab-style menu and sub-menu styles */
+.tab-menu ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.tab-menu li {
+    margin-right: 0px;
+}
+
+.tab-menu a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
+    background-color: #76a1c6;
+}
+
+    .tab-menu a:hover {
+        background-color: #f4f4f4;
+    }
+
+.main-menu {
+    display: flex;
+    background-color: #333;
+    padding: 0px 10px;
+    margin: 0; /* Reset default margin */
+}
+
+    .main-menu a {
+        text-decoration: none;
+        color: white;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-right: -10px; /* Apply negative margin to remove spacing */
+    }
+
+        .main-menu a:last-child {
+            margin-right: 0; /* Reset margin for the last item */
+        }
+
+        .main-menu a:hover {
+            background-color: #555;
+        }
+
+
+.main-container {
+    clear: both;
+    overflow: auto;
+}
+
+.sub-menu {
+    float: left;
+    width: 200px;
+    /*background-color: #e6ecf3;*/
+    padding: 10px;
+    
+}
+
+
+.content {
+    margin-left: 220px; /* To account for sub-menu width */
+    padding: 20px;
+}
+
+.clear {
+    clear: both;
+}
+
+/* Styles for the TreeView control */
+.treeview {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+    .treeview .tree-node {
+        margin: 5px 0;
+        padding-left: 20px;
+        position: relative;
+    }
+
+        .treeview .tree-node:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .treeview .tree-node:hover:before {
+            background-color: #555;
+        }
+
+        .treeview .tree-node.active:before {
+            background-color: #f44336;
+        }
+
+    .treeview .tree-label {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px;
+        color: #333;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+        .treeview .tree-label:hover {
+            color: #f44336;
+        }
+
+    .treeview .tree-icon {
+        vertical-align: middle;
+        font-size: 18px;
+    }
+
+        .treeview .tree-icon.folder:before {
+            content: "\f07b"; /* Font Awesome folder icon */
+        }
+
+        .treeview .tree-icon.file:before {
+            content: "\f15b"; /* Font Awesome file icon */
+        }
+
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100px;
+}
+
+.footer-contact {
+    flex: 1;
+    padding: 0 20px;
+}
+
+    .footer-contact h3 {
+        margin-bottom: 10px;
+    }
+
+.footer-image img {
+    max-height: 80px; /* Adjust image height as needed */
+   float:left;
+   margin-top:20px;
+}
+
+.footer-social {
+    flex: 1;
+    text-align: right;
+}
+
+.footer-description {
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+.product {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    display: inline-block;
+    width: 30%;
+    box-sizing: border-box;
+}
+
+    .product img {
+        max-width: 100%;
+        height: auto;
+    }
+
+.product-title {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.product-price {
+    color: #e44d26;
+    margin-top: 5px;
+}
+
+.add-to-cart {
+    background-color: #e44d26;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+    .add-to-cart:hover {
+        background-color: #c5371b;
+    }
+
+/* Form Styles */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Button Styles */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .button:hover {
+        background-color: #555;
+    }
+
+/* Label Styles */
+.label {
+    font-weight: bold;
+}
+
+/* Link Styles */
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+
+/* Divide the form into rows and fields */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.field {
+    flex-basis: 25%; /* Four fields in one row */
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    margin: 5px; /* Add some space between fields */
+}
+
+.registration-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .registration-table td {
+        /*width: 100%;*/ /* Four fields in one row */
+        padding: 10px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        margin-left: 40px;
+        font:bold;
+}
+
+/* Styles for common form elements */
+/* Textbox */
+.form-input {
+    width: 200px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: #333;
+}
+
+.form-error-message {
+    color: #f44336;
+    font-size: 14px;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+
+    /* Dropdown List */
+.form-input select {
+    width: 200px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: #333;
+}
+
+/* Radio Buttons */
+.form-radio {
+    margin-right: 5px;
+    width:200px;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+/* Buttons */
+.form-button {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .form-button:hover {
+        background-color: #d32f2f;
+    }
+
+</style >

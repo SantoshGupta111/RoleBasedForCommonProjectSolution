@@ -1,0 +1,343 @@
+using Microsoft.VisualBasic.FileIO;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
+
+using System.Text;
+
+
+namespace BikeMaster.Appcode
+{
+    public class ConnectionAccess
+    {
+        long _Trasaction_Time_Tracker;
+        string _DBConnectionString;
+
+        public ConnectionAccess()
+        {
+            try
+            {
+                string longname = "JublFood.Payment.API.config";
+                String configFilePath = AppDomain.CurrentDomain.BaseDirectory + longname;
+
+                _Trasaction_Time_Tracker = DateTime.Now.Ticks;
+                List<String[]> fileContent = new List<string[]>();
+
+                using (FileStream reader = File.OpenRead(configFilePath)) // mind the encoding - UTF8
+                using (TextFieldParser parser = new TextFieldParser(reader))
+                {
+                    parser.TrimWhiteSpace = true; // if you want
+                    parser.Delimiters = new[] { "," };
+                    parser.HasFieldsEnclosedInQuotes = false;
+                    while (!parser.EndOfData)
+                    {
+                        string[] line = parser.ReadFields();
+                        fileContent.Add(line);
+                    }
+
+                    _DBConnectionString = ((string[])fileContent[0])[1];
+                }
+
+            }
+
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void DataAccess()
+        {
+            DataTable dslocal = new DataTable();
+            string sql = string.Empty;
+            sql = "select * from location_codes";
+            SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+
+            SqlCommand odbccmd = new SqlCommand(sql, odbcon);
+            odbcon.Open();
+            SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+            da.Fill(dslocal);
+
+            if (dslocal.Rows.Count > 0)
+            {
+            }
+        }
+
+        public DataTable GetDataTable(String strsql)
+        {
+            //'OpenSubConnection(masterConnection)
+
+            DataTable dt = new DataTable();
+            DataTable dslocal = new DataTable();
+            string sql = string.Empty;
+            sql = strsql;
+            SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+            SqlCommand odbccmd = new SqlCommand(sql, odbcon);
+            odbcon.Open();
+            SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+            da.Fill(dt);
+            return dt;
+        }
+
+        public int InsertTable(String strsql)
+        {
+            DataTable dt = new DataTable();
+            DataTable dslocal = new DataTable();
+            string sql = string.Empty;
+            sql = strsql;
+            SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+            SqlCommand odbccmd = new SqlCommand(sql, odbcon);
+             int result = 0;
+            result = odbccmd.ExecuteNonQuery();
+             return result;
+        }
+
+        // public DataTable GetDataTableWithProc()
+        //{
+        //    //'OpenSubConnection(masterConnection)
+
+        //    DataTable dt = new DataTable();
+        //    DataTable dslocal = new DataTable();
+        //    string sql = string.Empty;
+        //    //sql = strsql;
+        //    SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+        //    SqlCommand odbccmd = new SqlCommand("spGetDriverTrackExeInfo", odbcon);
+        //     odbccmd.CommandType=CommandType.StoredProcedure;
+        //     odbccmd.Parameters.Add(new SqlParameter("@Location_Code", "dpi65910"));
+        //     odbccmd.Parameters.Add(new SqlParameter("@Exe_ID", "1"));
+        //    odbcon.Open();
+        //    SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+        //    da.Fill(dt);
+        //    return dt;
+        //}
+
+         public DataTable GetBikeMaster()
+         {
+             //'OpenSubConnection(masterConnection)
+
+             DataTable dt = new DataTable();
+             DataTable dslocal = new DataTable();
+             string sql = string.Empty;
+             //sql = strsql;
+             SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+             SqlCommand odbccmd = new SqlCommand("GPS_Get_Bike_Master", odbcon);
+             odbccmd.CommandType = CommandType.StoredProcedure;
+             odbcon.Open();
+             SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+             da.Fill(dt);
+             return dt;
+         }
+
+         public DataTable GetDetailsonBikeNumber(string bikeno)
+         {
+             //'OpenSubConnection(masterConnection)
+
+             DataTable dt = new DataTable();
+             DataTable dslocal = new DataTable();
+             string sql = string.Empty;
+             //sql = strsql;
+             SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+             SqlCommand odbccmd = new SqlCommand("GPS_Get_Bike_Details", odbcon);
+             odbccmd.CommandType = CommandType.StoredProcedure;
+             odbccmd.Parameters.Add(new SqlParameter("@Bike_number", bikeno));
+             odbcon.Open();
+             SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+             da.Fill(dt);
+             return dt;
+         }
+
+         public DataTable GetActiveBikeNumber()
+         {
+             //'OpenSubConnection(masterConnection)
+
+             DataTable dt = new DataTable();
+             DataTable dslocal = new DataTable();
+             string sql = string.Empty;
+             //sql = strsql;
+             SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+             SqlCommand odbccmd = new SqlCommand("GPS_Get_Bike_Active", odbcon);
+             odbccmd.CommandType = CommandType.StoredProcedure;
+             //odbccmd.Parameters.Add(new SqlParameter("@Bike_number", bikeno));
+             odbcon.Open();
+             SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+             da.Fill(dt);
+             return dt;
+         }
+         public DataTable GetAssignBikeToDriver()
+         {
+             //'OpenSubConnection(masterConnection)
+
+             DataTable dt = new DataTable();
+             DataTable dslocal = new DataTable();
+             string sql = string.Empty;
+             //sql = strsql;
+             SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+             SqlCommand odbccmd = new SqlCommand("GPS_GetBikeAssigntoDriver", odbcon);
+             odbccmd.CommandType = CommandType.StoredProcedure;
+             //odbccmd.Parameters.Add(new SqlParameter("@Bike_number", bikeno));
+             odbcon.Open();
+             SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+             da.Fill(dt);
+             return dt;
+         }
+         public DataTable GPS_Get_Bike_ActiveNotAssign()
+         {
+             //'OpenSubConnection(masterConnection)
+
+             DataTable dt = new DataTable();
+             DataTable dslocal = new DataTable();
+             string sql = string.Empty;
+             //sql = strsql;
+             SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+             SqlCommand odbccmd = new SqlCommand("GPS_Get_Bike_ActiveNotAssign", odbcon);
+             odbccmd.CommandType = CommandType.StoredProcedure;
+            
+             odbcon.Open();
+             SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+             da.Fill(dt);
+             return dt;
+         }
+         public DataTable GetLocationCodes()
+         {
+             //'OpenSubConnection(masterConnection)
+
+             DataTable dt = new DataTable();
+             DataTable dslocal = new DataTable();
+             string sql = string.Empty;
+             //sql = strsql;
+             SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+             SqlCommand odbccmd = new SqlCommand("spGetLocationCodes", odbcon);
+             odbccmd.CommandType = CommandType.StoredProcedure;
+             //odbccmd.Parameters.Add(new SqlParameter("@Bike_number", bikeno));
+             odbcon.Open();
+             SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+             da.Fill(dt);
+             return dt;
+         }
+         public DataTable AssignBikeToDriver(string LocationCode, string bikeno, string driverId)
+         {
+             //'OpenSubConnection(masterConnection)
+
+             DataTable dt = new DataTable();
+             DataTable dslocal = new DataTable();
+             string sql = string.Empty;
+             //sql = strsql;
+             SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+             SqlCommand odbccmd = new SqlCommand("GPS_AssignDriverBike", odbcon);
+             odbccmd.CommandType = CommandType.StoredProcedure;
+             odbccmd.Parameters.Add(new SqlParameter("@Location_code", LocationCode));
+             odbccmd.Parameters.Add(new SqlParameter("@Bike_number", bikeno));
+             odbccmd.Parameters.Add(new SqlParameter("@Driver_id", driverId));
+             //odbccmd.Parameters.Add(new SqlParameter("@Bike_number", bikeno));
+             odbcon.Open();
+             SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+             da.Fill(dt);
+             return dt;
+         }
+
+         public DataTable UnAssignBikeToDriver(string LocationCode, string driverId)
+         {
+             //'OpenSubConnection(masterConnection)
+
+             DataTable dt = new DataTable();
+             DataTable dslocal = new DataTable();
+             string sql = string.Empty;
+             //sql = strsql;
+             SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+             SqlCommand odbccmd = new SqlCommand("spDeleteRfid", odbcon);
+             odbccmd.CommandType = CommandType.StoredProcedure;
+             odbccmd.Parameters.Add(new SqlParameter("@Location_code", LocationCode));
+             odbccmd.Parameters.Add(new SqlParameter("@Driver_id", driverId));
+             //odbccmd.Parameters.Add(new SqlParameter("@Bike_number", bikeno));
+             odbcon.Open();
+             SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+             da.Fill(dt);
+             return dt;
+         }
+
+         public DataTable GetClockInDriver(string LocationCode, DateTime Ldate)
+         {
+             //'OpenSubConnection(masterConnection)
+             DataTable dt = new DataTable();
+             DataTable dslocal = new DataTable();
+             string sql = string.Empty;
+             //sql = strsql;
+             SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+             SqlCommand odbccmd = new SqlCommand("spROUTEClockedInDrivers", odbcon);
+             odbccmd.CommandType = CommandType.StoredProcedure;
+             odbccmd.Parameters.Add(new SqlParameter("@ploc", LocationCode));
+             odbccmd.Parameters.Add(new SqlParameter("@pdate", Ldate));
+             //odbccmd.Parameters.Add(new SqlParameter("@Bike_number", bikeno));
+             odbcon.Open();
+             SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+             da.Fill(dt);
+             return dt;
+         }
+
+
+
+        #region //  Bike Approv / Reject New updated on 14th Sept 17
+
+        public DataTable GetApprovRejectBikeToDriver()
+         {
+             //'OpenSubConnection(masterConnection)
+
+             DataTable dt = new DataTable();
+             DataTable dslocal = new DataTable();
+             string sql = string.Empty;
+             //sql = strsql;
+             SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+             //SqlCommand odbccmd = new SqlCommand("GPS_GetBikeAssigntoDriver", odbcon);
+             SqlCommand odbccmd = new SqlCommand("GPS_GetApprovRejectDriver", odbcon);
+             odbccmd.CommandType = CommandType.StoredProcedure;
+             //odbccmd.Parameters.Add(new SqlParameter("@Bike_number", bikeno));
+             odbcon.Open();
+             SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+             da.Fill(dt);
+             return dt;
+         }
+
+        public DataTable UpdateApprovedBikeToDriver(int _id)
+        {
+            //'OpenSubConnection(masterConnection)
+
+            DataTable dt = new DataTable();
+            DataTable dslocal = new DataTable();
+            string sql = string.Empty;
+            //sql = strsql;
+            SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+            SqlCommand odbccmd = new SqlCommand("GPS_UpdateApprovedStatus", odbcon);
+            odbccmd.CommandType = CommandType.StoredProcedure;
+            odbccmd.Parameters.Add(new SqlParameter("@ID", _id));
+            //odbccmd.Parameters.Add(new SqlParameter("@Bike_number", bikeno));
+            odbcon.Open();
+            SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+            da.Fill(dt);
+            return dt;
+        }
+
+        public DataTable UpdateRejectedBikeToDriver(int _id)
+        {
+            //'OpenSubConnection(masterConnection)
+
+            DataTable dt = new DataTable();
+            DataTable dslocal = new DataTable();
+            string sql = string.Empty;
+            //sql = strsql;
+            SqlConnection odbcon = new SqlConnection(_DBConnectionString);
+            SqlCommand odbccmd = new SqlCommand("GPS_UpdateRejectedStatus", odbcon);
+            odbccmd.CommandType = CommandType.StoredProcedure;
+            odbccmd.Parameters.Add(new SqlParameter("@ID", _id));
+            //odbccmd.Parameters.Add(new SqlParameter("@Bike_number", bikeno));
+            odbcon.Open();
+            SqlDataAdapter da = new SqlDataAdapter(odbccmd);
+            da.Fill(dt);
+            return dt;
+        }
+
+       
+        #endregion
+    }
+}

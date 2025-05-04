@@ -1,0 +1,184 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMaster.master.cs" Inherits="UIExecute.MasterPage.AdminMaster" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="AjaxToolKit" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-Applicational -Dynamic Role Based</title>
+    <link href="../cssStyle/StyleSheetMaster.css" rel="stylesheet" />
+     <%-----  For Image large display on mouse over  Start script and css--%>
+    <script>
+        var largeImageElement = null;
+
+        function showLargeImage(imageElement) {
+            var imageUrl = imageElement.src;
+
+            // Create a new image element for the larger image
+            largeImageElement = document.createElement("img");
+            largeImageElement.src = imageUrl;
+            largeImageElement.className = "large-image";
+            largeImageElement.style.display = "none";
+
+            // Append the image element to the body
+            document.body.appendChild(largeImageElement);
+
+            // Position the large image element
+            positionLargeImage(imageElement);
+
+            // Show the large image element
+            largeImageElement.style.display = "block";
+        }
+
+        function hideLargeImage() {
+            // Hide and remove the large image element
+            if (largeImageElement) {
+                largeImageElement.style.display = "none";
+                document.body.removeChild(largeImageElement);
+                largeImageElement = null;
+            }
+        }
+
+        function positionLargeImage(imageElement) {
+            // Calculate the position of the large image element
+            var imageRect = imageElement.getBoundingClientRect();
+            var top = imageRect.top + window.pageYOffset + imageElement.offsetHeight;
+            var left = imageRect.left + window.pageXOffset;
+
+            // Set the position of the large image element
+            largeImageElement.style.top = top + "px";
+            largeImageElement.style.left = left + "px";
+        }
+    </script>
+
+    <style>
+        .large-image {
+            position: absolute;
+            width: 200px; /* Adjust the width as needed */
+            height: auto; /* Adjust the height as needed */
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            z-index: 9999;
+        }
+    </style>
+
+    <%--For Image large display on mouse over  END script and css--%>
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+      <form id="form1" runat="server">
+          <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+            <div>
+    
+    <header>
+        <div style="float:left; width:75%;">
+            <div class="logo" width="10%">
+                <a href="~/Account/home.aspx" runat="server">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/HRIS.png" Height="50px" Width="80px" onmouseover="showLargeImage(this)" onmouseout="hideLargeImage()" />
+                </a>
+                <asp:Image ID="Image2" runat="server" Visible="true" Height="50px" Width="50px" 
+               onmouseover="showLargeImage(this)" onmouseout="hideLargeImage()" />
+            </div>
+          <div align='center' style="margin-top:10px; font-size: 25px; letter-spacing: 5px;">
+             
+            <Marquee direction="left" loop="40" width="65%">
+                Welcome to our Role Based Application..with accessbility for read/write/delete & View! Find the best Features and Functionality.</Marquee>
+            </div>
+         <asp:Label ID="lblwelcomename" runat="server" ForeColor="White" Text=""></asp:Label>
+
+        </div>
+
+       <div style="float:right; width:20%;">
+             <div class="nav-links">
+            <a href="../Account/Home.aspx">Home</a>
+            <a href="../Account/Home.aspx">About Us</a>
+            <a href="../Account/ContactUs.aspx">Contact</a>
+        </div>
+        </div>
+         <div class="login">
+         <asp:LinkButton ID="lnkbtnSignOut" Font-Size="12" runat="server" Text="Sign Out" Font-Bold="true" ForeColor="Red"></asp:LinkButton>
+         </div>
+
+    </header>
+     
+    <div class="main-menu">
+         <nav class="tab-menu">
+        <asp:DataList ID="DataList2" runat="server"  RepeatDirection="Horizontal">
+        <ItemTemplate>
+        <ul><li>
+         <asp:LinkButton ID="lnkbtntopmenu" runat="server" Font-Size="12" ForeColor="#ffffff" Text='<%# Eval("MenuName") %>' OnClick="lnkbtntopmenu_Click"></asp:LinkButton>
+         </li>
+         </ul>
+         <asp:Label ID="lblurll" runat="server" Visible="false" Text='<%# Eval("MenuUrl") %>'></asp:Label>
+         <asp:Label ID="lblid" runat="server" Visible="false" Text='<%# Eval("MenuID") %>'></asp:Label>
+         </ItemTemplate>
+         </asp:DataList>
+         </nav>
+    </div>
+
+    <div class="main-container">
+        <div class="sub-menu">
+            <div class="sub-menu-item">
+            <div id="navigation11">
+            <asp:TreeView ID="TreeView1" runat="server" SelectedNodeStyle-Font-Bold="true"
+            SelectedNodeStyle-ForeColor="DarkBlue" ShowExpandCollapse="true" CssClass="treeview"
+            ImageSet="XPFileExplorer" ShowLines="True">
+            <SelectedNodeStyle Font-Bold="True" ForeColor="DarkBlue"></SelectedNodeStyle>
+            </asp:TreeView>
+         
+           </div>
+
+            </div>
+        </div>
+        <div class="content" id="divmaster" runat="server" visible="true">
+            
+            <asp:Label ID="lblActionMessage" runat="server" Text="" ForeColor="Red"></asp:Label>  
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+             Content:
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <div class="clear"></div> <!-- Clear the floats -->
+    </div>
+
+                <footer>
+    <div class="footer-content">
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <p>Email: sgupta.gupta79@gmail.com</p>
+            <p>Phone: +91 85274-56618</p>
+        </div>
+        <div class="footer-image">
+            <img src="../Images/santosh_photo.png" alt="Footer Image"  onmouseover="showLargeImage(this)" onmouseout="hideLargeImage()">
+            <br /><br /><br /><br /><br /><br />
+             <div class="footer-social">
+            <a href="#"><img src="../Icons/fb.png" alt="Facebook"></a>
+            <a href="#"><img src="../Icons/twitter.png" alt="Twitter"></a>
+            <a href="#"><img src="../Icons/insta.png" alt="Instagram"></a>
+            <a href="#"><img src="../Icons/twitter.png" alt="Instagram"></a>
+            <a href="#"><img src="../Icons/youtube.png" alt="Instagram"></a>
+
+        </div>
+        </div>
+    </div>
+    <div class="footer-description">
+        <p>&copy; Copyright © 2023 By Santosh Kumar:  Personal Web Application for common use. All rights reserved.</p>
+    </div>
+</footer>
+
+
+ </div>
+ </form>   
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterLayout.master.cs" Inherits="UIExecute.Design_Layout.MasterLayout" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Master Page</title>
+    <link href="CSS/StyleSheetMaster.css" rel="stylesheet" />
+  
+      <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+      <form id="form1" runat="server">
+            <div>
+    
+    <header>
+        <div style="float:left; width:75%;">
+            <div class="logo" width="10%">
+                <a href="~/Account/home.aspx" runat="server">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/HRIS.png" Height="60px" Width="80px" />
+                </a>
+            </div>
+          <div align='center' style="margin-top:10px; font-size: 25px; letter-spacing: 5px;">
+            <Marquee direction="left" loop="40" width="65%">
+                Welcome to our Web Application! Find the best Features and Functionality.</Marquee>
+            </div>
+            <asp:Label ID="lblwelcomename" runat="server" ForeColor="black" Font-Size="20px" Text="Santosh Kumar"></asp:Label>
+        </div>
+
+       <div style="float:right; width:20%;">
+             <div class="nav-links">
+            <a href="../Account/Home.aspx">Home</a>
+            <a href="../Account/Home.aspx">About Us</a>
+            <a href="../Account/ContactUs.aspx">Contact</a>
+        </div>
+        </div>
+
+         <div class="login" align='right'>
+            <a href="#">Login</a> / <a href="#">Signout</a>
+        </div>
+
+    </header>
+     
+    <div class="main-menu">
+         <nav class="tab-menu">
+         <asp:Label ID="lbl" runat="server" Text="HOME"></asp:Label>
+        <a href="#">Category 1</a>
+        <a href="#">Category 2</a>
+        <a href="#">Category 3</a>
+        <a href="#">Category 4</a>
+         </nav>
+    </div>
+    <div class="main-container">
+        <div class="sub-menu">
+            <div class="sub-menu-item">
+                <a href="#">Sub-Category 1</a>
+            </div>
+            <div class="sub-menu-item">
+                <a href="#">Sub-Category 2</a>
+            </div>
+            <div class="sub-menu-item">
+                <a href="#">Sub-Category 3</a>
+            </div>
+        </div>
+        <div class="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+             Content:
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <div class="clear"></div> <!-- Clear the floats -->
+    </div>
+
+                <footer>
+    <div class="footer-content">
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <p>Email: sgupta.gupta79@gmail.com</p>
+            <p>Phone: +91 85274-56618</p>
+        </div>
+        <div class="footer-image">
+            <img src="../Images/santosh_photo.png" alt="Footer Image" height="100px" width="100px">
+            <br /><br /><br /><br /><br /><br />
+             <div class="footer-social">
+            <a href="#"><img src="../Icons/fb.png" alt="Facebook"></a>
+            <a href="#"><img src="../Icons/twitter.png" alt="Twitter"></a>
+            <a href="#"><img src="../Icons/insta.png" alt="Instagram"></a>
+            <a href="#"><img src="../Icons/twitter.png" alt="Instagram"></a>
+            <a href="#"><img src="../Icons/youtube.png" alt="Instagram"></a>
+
+        </div>
+        </div>
+    </div>
+    <div class="footer-description">
+        <p>&copy; Copyright © 2023 By Santosh Kumar:  Personal Web Application for common use. All rights reserved.</p>
+    </div>
+</footer>
+
+
+ </div>
+ </form>   
+
+</body>
+</html>

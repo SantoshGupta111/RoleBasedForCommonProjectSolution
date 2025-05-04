@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{409D02ED-7DD2-4B46-8A22-59E67C51C2A0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BAL</RootNamespace>
+    <AssemblyName>BAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BALBase.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="ENUM\AlertMessage\AlertMessaging.cs" />
+    <Compile Include="ENUM\AlertMessage\ProductPlanDescriptions.cs" />
+    <Compile Include="ENUM\CallStatusType.cs" />
+    <Compile Include="ENUM\FolderType.cs" />
+    <Compile Include="ENUM\NameTitle.cs" />
+    <Compile Include="ENUM\Report\AntiVirus.cs" />
+    <Compile Include="ENUM\Report\Month.cs" />
+    <Compile Include="ENUM\Report\Year.cs" />
+    <Compile Include="ENUM\RoleType.cs" />
+    <Compile Include="ENUM\SurveyDevices.cs" />
+    <Compile Include="ENUM\TempTableValueType.cs" />
+    <Compile Include="ENUM\ValidationLoginedAction.cs" />
+    <Compile Include="MasterDB\CityRepository.cs" />
+    <Compile Include="MasterDB\CountryRepository.cs" />
+    <Compile Include="MasterDB\DepartmentRepository.cs" />
+    <Compile Include="MasterDB\DesignationRepository.cs" />
+    <Compile Include="MasterDB\ExportToExcelRepository.cs" />
+    <Compile Include="MasterDB\LocationCodeRepository.cs" />
+    <Compile Include="MasterDB\StateRepository.cs" />
+    <Compile Include="Menus\FileAccessCapabilityRepository.cs" />
+    <Compile Include="Menus\MenuRepository.cs" />
+    <Compile Include="Menus\MenuRoleRepository.cs" />
+    <Compile Include="Menus\SubMenuRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\RolePermissionRepository.cs" />
+    <Compile Include="Users\RoleRepository.cs" />
+    <Compile Include="Users\UserAccountRepository.cs" />
+    <Compile Include="Users\UserLoginRepository.cs" />
+    <Compile Include="Users\UserRegistrationRepository.cs" />
+    <Compile Include="Users\UserReportingRepository.cs" />
+    <Compile Include="Users\UserRoleManagesRepository.cs" />
+    <Compile Include="Validation.cs" />
+    <Compile Include="ValidationError.cs" />
+    <Compile Include="ValidationRules.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{63092698-afe8-4326-b70a-1b0595d0d5c8}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{622e8b5b-4133-4b8d-82a3-7d429c1f758b}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ENUM\Employee\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

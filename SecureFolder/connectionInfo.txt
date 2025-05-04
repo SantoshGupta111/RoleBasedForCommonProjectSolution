@@ -1,0 +1,4 @@
+
+ServerName=DESKTOP-5DQO9HT\SQLEXPRESS
+UserName=priyansh
+Password=Priyansh@1

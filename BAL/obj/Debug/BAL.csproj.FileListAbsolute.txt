@@ -1,0 +1,11 @@
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\BAL\bin\Debug\BAL.dll
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\BAL\bin\Debug\BAL.pdb
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\BAL\bin\Debug\Common.dll
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\BAL\bin\Debug\DAL.dll
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\BAL\bin\Debug\Common.pdb
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\BAL\bin\Debug\DAL.pdb
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\BAL\obj\Debug\BAL.csprojAssemblyReference.cache
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\BAL\obj\Debug\BAL.csproj.CoreCompileInputs.cache
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\BAL\obj\Debug\BAL.csproj.CopyComplete
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\BAL\obj\Debug\BAL.dll
+F:\RoleBasedApplicationForCommon_July24\RoleBasedForCommonProjectSolution\BAL\obj\Debug\BAL.pdb

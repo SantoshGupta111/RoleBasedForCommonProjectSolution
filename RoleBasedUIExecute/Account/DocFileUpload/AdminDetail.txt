@@ -1,0 +1,22 @@
+
+
+Project Running at Home:  Backup date wise updated for secure code
+Path:  D:\BACKUP PROJECT JUNE 2023- Dynamic Role based
+
+
+If Visual Studio 2017-  Ask for login password after expired. then use below
+Updated on 27th Sept 2022
+Id:  sgupta.gupta79@gmail.com
+Pass: SantoshPriya@123
+
+Updated  28th June 2023  mid night  2 PM
+Gmail password:  SPriya!@!@123
+
+//  For Send mail in asp.net due to error showing in secure connection related... then use passkey after generate.
+  smtp.Credentials = new System.Net.NetworkCredential("sgupta.gupta79@gmail.com", "ttybjeaejinhogfw"); // passkey generate
+                    // passkey from APP Password in Gmail-account settings
+
+
+https://chat.openai.com/auth/login?sso
+ID:  gmail ID
+pass:  santosh@1
